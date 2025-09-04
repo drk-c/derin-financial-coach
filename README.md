@@ -88,7 +88,3 @@ All data is stored locally in `~/.derin_bills.json` including:
 - Python 3.7+
 - click
 - python-dateutil
-
-## License
-
-MIT License
