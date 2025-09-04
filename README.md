@@ -33,7 +33,7 @@ python main.py demo
 # View detected recurring bills
 python main.py bills
 
-# Ask questions about your bills
+# Get insight from Derin
 python main.py ask
 
 # Check bill alerts and insights
@@ -44,7 +44,7 @@ python main.py alerts
 
 - `python main.py demo` - Load sample transaction data
 - `python main.py bills` - View detected recurring bills
-- `python main.py ask` - Ask questions about your bills
+- `python main.py ask` - Get insight from Derin
 - `python main.py alerts` - Show bill alerts and insights
 
 ### Example Output
@@ -88,3 +88,8 @@ All data is stored locally in `~/.derin_bills.json` including:
 - Python 3.7+
 - click
 - python-dateutil
+
+## Deliverables
+
+- **Video Presentation**: (https://www.youtube.com/your-demo-link)
+- **Design Documentation**: (https://docs.google.com/document/d/1aREIXDmk6iFUWbsFzlbiXnPFn_ROIHCmHs7-f5GLrIA/edit?usp=sharing)
