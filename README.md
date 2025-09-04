@@ -91,5 +91,5 @@ All data is stored locally in `~/.derin_bills.json` including:
 
 ## Deliverables
 
-- **Video Presentation**: (https://www.youtube.com/your-demo-link)
+- **Video Presentation**: (https://youtu.be/FgEnso5UbgQ)
 - **Design Documentation**: (https://docs.google.com/document/d/1aREIXDmk6iFUWbsFzlbiXnPFn_ROIHCmHs7-f5GLrIA/edit?usp=sharing)
