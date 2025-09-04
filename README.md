@@ -1,47 +1,30 @@
-# Derin - AI Financial Companion for Recurring Bills
+# Derin Financial Coach
 
-A simple CLI companion that uses AI to detect recurring bills from transaction data and provide personalized financial insights.
+A simple CLI tool that detects recurring bills from transaction data and provides financial insights.
 
-## 🚀 Features
+## Features
 
-### 🔹 1. Bill Detection & Tracking
-- **Pattern Recognition**: AI scans transactions for repeated charges (same merchant, similar amount, monthly frequency)
-- **Smart Classification**: Automatically labels bills as rent, utilities, phone, insurance, subscriptions, etc.
-- **Confidence Scoring**: Shows how confident the AI is in each bill detection
+- **Bill Detection**: Automatically identifies recurring bills from transaction patterns
+- **Bill Classification**: Categorizes bills as rent, utilities, subscriptions, etc.
+- **Smart Alerts**: Shows upcoming bills and amount changes
+- **Financial Insights**: Provides basic analysis of your spending patterns
 
-### 🔹 2. AI Coaching Companion
-- Conversational Q&A about your bills and spending
-- Personalized insights and recommendations
-- Behavioral coaching based on payment patterns
-- Goal alignment and optimization suggestions
+## Installation
 
-### 🔹 3. Proactive Alerts
-- Shows upcoming bill due dates
-- Identifies overdue payments
-- Provides AI-generated insights about your financial health
-
-## 🛠️ Installation
-
-1. **Clone and setup**:
+1. Clone the repository:
 ```bash
-git clone <your-repo>
+git clone https://github.com/drk-c/derin-financial-coach.git
 cd derin-financial-coach
+```
+
+2. Install dependencies:
+```bash
 pip install -r requirements.txt
 ```
 
-2. **Configure environment** (optional):
-Edit `.env` file with your OpenAI API key for AI insights:
-```env
-# OpenAI Configuration (optional - for AI insights)
-OPENAI_API_KEY=your_openai_api_key
+## Usage
 
-# User Configuration
-USER_NAME=Derek
-```
-
-## 🤖 Usage
-
-### Quick Start with Demo Data
+### Quick Start
 
 ```bash
 # Load sample data to see how it works
@@ -50,99 +33,62 @@ python main.py demo
 # View detected recurring bills
 python main.py bills
 
-# Ask Derin about your finances (requires OpenAI API key)
+# Ask questions about your bills
 python main.py ask
 
-# Check upcoming bill alerts
+# Check bill alerts and insights
 python main.py alerts
 ```
 
 ### Available Commands
 
-```bash
-python main.py demo    # Load sample transaction data
-python main.py bills   # View detected recurring bills
-python main.py ask     # Chat with AI about your bills
-python main.py alerts  # Show bill alerts and insights
-```
+- `python main.py demo` - Load sample transaction data
+- `python main.py bills` - View detected recurring bills
+- `python main.py ask` - Ask questions about your bills
+- `python main.py alerts` - Show bill alerts and insights
 
 ### Example Output
 
 ```
 Your Recurring Bills:
-----------------------------------------------------------------------
-Merchant             Amount     Type            Last Paid    Next Due
-----------------------------------------------------------------------
-Netflix              $15.99     Other           03/15/25     04/15/25
-Rent Payment         $1200.00   Other           03/01/25     04/01/25
-Electric Company     $92.58     Other           03/10/25     04/10/25
-Spotify              $9.99      Other           03/20/25     04/20/25
-----------------------------------------------------------------------
-Total Monthly Bills: $1318.56
+------------------------------------------------------------------------------------------
+Merchant                            Amount       Type            Last Paid    Next Due
+------------------------------------------------------------------------------------------
+Netflix Monthly Subscription        $15.99       Subscription    03/15/25     04/15/25
+Monthly Rent Payment                $1200.00     Rent/Mortgage   03/01/25     04/01/25
+Electric Bill                       $96.83       Utilities       03/10/25     04/10/25
+Spotify Premium                     $9.99        Subscription    03/20/25     04/20/25
+------------------------------------------------------------------------------------------
+Total Monthly Bills: $1322.81
 ```
 
-### Example AI Conversation
+## How It Works
 
-```
-Your question: How much do I spend on subscriptions each month?
-Derin's Response: You're spending $25.98/month on subscriptions (Netflix $15.99 + Spotify $9.99). 
-That's about 2% of your total monthly bills. Consider if you're using both services regularly!
+1. **Pattern Recognition**: Analyzes transaction data to find recurring payments
+2. **Bill Classification**: Uses simple rules to categorize bills by type
+3. **Trend Analysis**: Detects increasing or decreasing bill amounts
+4. **Alert System**: Identifies upcoming bills and unusual changes
 
-Your question: When is my rent due?
-Derin's Response: Your rent of $1,200 is due on the 1st of each month. 
-It's your largest recurring expense at 91% of your total monthly bills.
-```
+## Project Structure
 
-## 🏗️ Architecture
+- `main.py` - CLI interface and commands
+- `utils.py` - Core business logic and algorithms
+- `dummy_data.py` - Sample data for testing
+- `requirements.txt` - Python dependencies
 
-- **AI Bill Detection**: Pattern recognition for recurring payments from transaction data
-- **OpenAI Integration**: Conversational AI for insights and coaching (optional)
-- **Simple CLI Interface**: Clean command-line interface
-- **Local Data Storage**: JSON-based storage for bills and user data
+## Data Storage
 
-## 📊 Data Structure
+All data is stored locally in `~/.derin_bills.json` including:
+- Detected recurring bills
+- Transaction history
+- User preferences
 
-```json
-{
-  "bills": [
-    {
-      "merchant": "Netflix",
-      "amount": 15.99,
-      "type": "Other",
-      "frequency": "monthly",
-      "last_paid": "2025-03-15",
-      "confidence": 1.0
-    }
-  ],
-  "transactions": [...],
-  "user_profile": {
-    "name": "Derek",
-    "connected_accounts": [],
-    "bill_streaks": {},
-    "preferences": {
-      "alert_days_before": 3,
-      "enable_ai_coaching": true
-    }
-  }
-}
-```
+## Requirements
 
-## 🎯 Hackathon Features
+- Python 3.7+
+- click
+- python-dateutil
 
-- **Quick Demo**: Get running in seconds with sample data
-- **AI-Powered**: Intelligent bill detection and classification
-- **Conversational**: Natural language interaction with AI
-- **Simple Setup**: No complex configuration required
-- **Extensible**: Easy to add real bank integration later
+## License
 
-## 🚀 Future Enhancements
-
-See `FUTURE_PLANS.md` for detailed roadmap including:
-- Real bank integration via Plaid API
-- Advanced AI features and predictive analytics
-- Web interface and mobile app
-- Enhanced gamification and reporting
-
-## 📝 License
-
-MIT License - feel free to use for your hackathon project!
+MIT License
