@@ -72,7 +72,7 @@ def get_sample_transactions():
         },
         {
             'id': 'demo_9',
-            'amount': -105.00,
+            'amount': -155.00,
             'date': '2025-08-10',
             'merchant_name': 'Electric Company',
             'name': 'Electric Bill',

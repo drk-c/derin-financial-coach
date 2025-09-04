@@ -8,12 +8,30 @@ import json
 from datetime import datetime
 from collections import defaultdict
 from dateutil.relativedelta import relativedelta
+from statistics import median
 
 # User configuration
 USER_NAME = "Derek"
 
 # Data file path
 DATA_FILE = os.path.expanduser("~/.derin_bills.json")
+
+# --- Robust anomaly check on amount history (MAD z-score) ---
+def robust_anomaly_flag(amounts, z_thresh=3.5):
+    """
+    Returns (is_anomaly, score) for the LAST value in amounts using a robust z-score.
+    Works with short histories (>=3) and is resistant to outliers.
+    """
+    if not amounts or len(amounts) < 3:
+        return False, 0.0
+
+    x = [float(amount) for amount in amounts]
+    med = median(x)
+    abs_dev = [abs(v - med) for v in x]
+    mad = median(abs_dev) or 1e-6  # avoid divide-by-zero
+    z_scores = [(0.6745 * (v - med) / mad) for v in x]
+    last_z = z_scores[-1]
+    return (abs(last_z) > z_thresh), float(last_z)
 
 def load_data():
     """Load user data from JSON file"""
@@ -82,7 +100,7 @@ def detect_recurring_bills(transactions):
             avg_amount = sum(amounts) / len(amounts)
             
             # More lenient variance check since we're using name matching
-            if amount_variance / avg_amount < 0.3:  # Allow up to 30% variance
+            if amount_variance / avg_amount < 0.8:  # Allow up to 80% variance
                 # Bill type
                 bill_type = classify_bill_type(transaction_name, avg_amount)
                 
@@ -96,6 +114,8 @@ def detect_recurring_bills(transactions):
                     elif recent_avg < older_avg * 0.9:  # 10% decrease
                         amount_trend = "decreasing"
                 
+                is_anom, anom_score = robust_anomaly_flag(amounts)
+                
                 recurring_bills.append({
                     'merchant': transaction_name,
                     'amount': avg_amount,
@@ -104,7 +124,11 @@ def detect_recurring_bills(transactions):
                     'last_paid': max(t['date'] for t in transactions_list),
                     'transaction_count': len(transactions_list),
                     'amount_trend': amount_trend,
-                    'amount_history': amounts
+                    'amount_history': amounts,
+                    'anomaly': {
+                        'is_anomaly': is_anom,
+                        'score': anom_score
+                    }
                 })
     
     return recurring_bills
@@ -155,10 +179,11 @@ def get_insight(user_data, context=""):
             subscription_total = sum(sub['amount'] for sub in subscriptions)
             insights.append(f"You're spending ${subscription_total:.2f}/month on subscriptions. Consider reviewing these services.")
         
-        # Check for increasing bills
-        increasing_bills = [bill for bill in bills if bill.get('amount_trend') == 'increasing']
-        if increasing_bills:
-            insights.append("Some of your bills are increasing. Check the alerts for details.")
+        # Check for unusual price increases (anomalies)
+        anomaly_bills = [bill for bill in bills if bill.get('anomaly', {}).get('is_anomaly')]
+        if anomaly_bills:
+            for bill in anomaly_bills:
+                insights.append(f"{bill['merchant']} has increased unusually. Please review the alerts for details.")
     
     insights.append("Tip: Set up autopay for consistent bills to avoid late fees!")
     

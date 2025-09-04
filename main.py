@@ -78,14 +78,19 @@ def alerts():
     print("Smart Alerts & Subscription Insights")
     print("-" * 50)
     
-    # Check for amount changes
-    print("\nAmount Change Alerts:")
+    # Anomaly detection - provider price increases
+    print("\nBilling Amount Increase Alerts:")
+    found_anom = False
     for bill in bills:
-        if bill.get('amount_trend') == 'increasing':
-            recent_amount = bill['amount_history'][-1] if bill['amount_history'] else bill['amount']
-            avg_amount = sum(bill['amount_history'][:-1]) / len(bill['amount_history'][:-1]) if len(bill['amount_history']) > 1 else bill['amount']
-            increase = recent_amount - avg_amount
-            print(f"WARNING: {bill['merchant']}: Usually ${avg_amount:.2f}, but last payment was ${recent_amount:.2f} (+${increase:.2f})")
+        anom = bill.get('anomaly', {})
+        if anom.get('is_anomaly'):
+            found_anom = True
+            last_amt = bill['amount_history'][-1] if bill['amount_history'] else bill['amount']
+            avg_amt = sum(bill['amount_history'][:-1]) / len(bill['amount_history'][:-1]) if len(bill['amount_history']) > 1 else bill['amount']
+            increase = last_amt - avg_amt
+            print(f"UNUSUAL PRICE: {bill['merchant']} charged ${last_amt:.2f} (usually ${avg_amt:.2f}, +${increase:.2f}). This is unusually higher than normal.")
+    if not found_anom:
+        print("No unusual price increases detected.")
     
     # Check for upcoming bills
     print("\nUpcoming Bills:")
@@ -119,7 +124,7 @@ def alerts():
             print(f"BILL: {bill['merchant']} - ${bill['amount']:.2f} - {status} ({days} days)")
     
     # Subscription & Gray Charge Detection
-    print("\nSubscription & Gray Charge Analysis:")
+    print("\nSubscription Analysis:")
     subscriptions = [bill for bill in bills if bill['type'] in ['Subscription', 'Other'] and bill['amount'] < 50]
     
     if subscriptions:
@@ -130,11 +135,6 @@ def alerts():
             print(f"  - {sub['merchant']}: ${sub['amount']:.2f}/month")
         
         print(f"\nTIP: Consider reviewing these services - you could save ${total_subscriptions:.2f}/month if you cancel unused ones!")
-    
-    # Get insights
-    if bills:
-        insight = get_insight(data, "Show smart alerts about bill changes and subscription optimization")
-        print(f"\nDerin's Insights: {insight}")
 
 @cli.command()
 def demo():
