@@ -1,4 +1,4 @@
-# Derin Financial Coach
+# Meet Derin, an AI Financial Coach
 
 A simple CLI tool that detects recurring bills from transaction data and provides financial insights.
 
