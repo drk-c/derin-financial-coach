@@ -162,4 +162,4 @@ def get_insight(user_data, context=""):
     
     insights.append("Tip: Set up autopay for consistent bills to avoid late fees!")
     
-    return " ".join(insights)
+    return "\n".join(insights)
