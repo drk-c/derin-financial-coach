@@ -54,10 +54,10 @@ Your Recurring Bills:
 ------------------------------------------------------------------------------------------
 Merchant                            Amount       Type            Last Paid    Next Due
 ------------------------------------------------------------------------------------------
-Netflix Monthly Subscription        $15.99       Subscription    03/15/25     04/15/25
-Monthly Rent Payment                $1200.00     Rent/Mortgage   03/01/25     04/01/25
-Electric Bill                       $96.83       Utilities       03/10/25     04/10/25
-Spotify Premium                     $9.99        Subscription    03/20/25     04/20/25
+Netflix Monthly Subscription        $15.99       Subscription    08/15/25     09/15/25
+Monthly Rent Payment                $1200.00     Rent/Mortgage   08/01/25     09/01/25
+Electric Bill                       $96.83       Utilities       08/10/25     09/10/25
+Spotify Premium                     $9.99        Subscription    08/20/25     09/20/25
 ------------------------------------------------------------------------------------------
 Total Monthly Bills: $1322.81
 ```
