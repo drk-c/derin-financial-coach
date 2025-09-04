@@ -9,6 +9,7 @@ from datetime import datetime
 from collections import defaultdict
 from dateutil.relativedelta import relativedelta
 from statistics import median
+from utils_embeddings import build_canonical_map_embeddings, normalize_transactions_with_embeddings
 
 # User configuration
 USER_NAME = "Derek"
@@ -52,6 +53,10 @@ def detect_recurring_bills(transactions):
     """AI-powered detection of recurring bills from transactions"""
     if not transactions:
         return []
+    
+    canon_map = build_canonical_map_embeddings(transactions, sim_threshold=0.65)
+    transactions = normalize_transactions_with_embeddings(transactions, canon_map)
+    
     
     # Group transactions by transaction name
     transaction_groups = defaultdict(list)

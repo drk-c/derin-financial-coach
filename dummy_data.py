@@ -11,7 +11,7 @@ def get_sample_transactions():
             'amount': -15.99,
             'date': '2025-06-15',
             'merchant_name': 'Netflix',
-            'name': 'Netflix Monthly Subscription',
+            'name': 'NETFLIX.COM',
             'account_id': 'demo_account'
         },
         {
@@ -19,7 +19,7 @@ def get_sample_transactions():
             'amount': -15.99,
             'date': '2025-07-15',
             'merchant_name': 'Netflix',
-            'name': 'Netflix Monthly Subscription',
+            'name': 'Netflix Inc',
             'account_id': 'demo_account'
         },
         {
@@ -27,7 +27,7 @@ def get_sample_transactions():
             'amount': -15.99,
             'date': '2025-08-15',
             'merchant_name': 'Netflix',
-            'name': 'Netflix Monthly Subscription',
+            'name': 'Netflix Subscription',
             'account_id': 'demo_account'
         },
         {
@@ -100,6 +100,46 @@ def get_sample_transactions():
             'date': '2025-08-20',
             'merchant_name': 'Spotify',
             'name': 'Spotify Premium',
+            'account_id': 'demo_account'
+        },
+        {
+            'id': 'demo_13',
+            'amount': -12.50,
+            'date': '2025-08-05',
+            'merchant_name': 'Cava',
+            'name': 'Cava Bowl',
+            'account_id': 'demo_account'
+        },
+        {
+            'id': 'demo_14',
+            'amount': -14.75,
+            'date': '2025-08-12',
+            'merchant_name': 'Chipotle',
+            'name': 'Chipotle Bowl',
+            'account_id': 'demo_account'
+        },
+        {
+            'id': 'demo_15',
+            'amount': -45.99,
+            'date': '2025-08-08',
+            'merchant_name': 'Amazon',
+            'name': 'Amazon Purchase',
+            'account_id': 'demo_account'
+        },
+        {
+            'id': 'demo_16',
+            'amount': -8.25,
+            'date': '2025-08-15',
+            'merchant_name': 'Starbucks',
+            'name': 'Starbucks Coffee',
+            'account_id': 'demo_account'
+        },
+        {
+            'id': 'demo_17',
+            'amount': -22.80,
+            'date': '2025-08-18',
+            'merchant_name': 'Target',
+            'name': 'Target Shopping',
             'account_id': 'demo_account'
         }
     ]
