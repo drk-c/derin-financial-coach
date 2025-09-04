@@ -103,7 +103,6 @@ def detect_recurring_bills(transactions):
                     'type': bill_type,
                     'last_paid': max(t['date'] for t in transactions_list),
                     'transaction_count': len(transactions_list),
-                    'confidence': min(1.0, len(transactions_list) / 2.0),  # Higher confidence with name matching
                     'amount_trend': amount_trend,
                     'amount_history': amounts
                 })

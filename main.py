@@ -161,13 +161,13 @@ def demo():
     # Show detected bills
     if detected_bills:
         print("\nDetected Recurring Bills:")
-        print("-" * 70)
-        print(f"{'Merchant':<35} {'Amount':<12} {'Type':<15} {'Confidence':<10}")
-        print("-" * 70)
+        print("-" * 60)
+        print(f"{'Merchant':<35} {'Amount':<12} {'Type':<15}")
+        print("-" * 60)
         for bill in detected_bills:
             # Truncate long merchant names to fit in column
             merchant_name = bill['merchant'][:32] + "..." if len(bill['merchant']) > 35 else bill['merchant']
-            print(f"{merchant_name:<35} ${bill['amount']:<11.2f} {bill['type']:<15} {bill['confidence']:.0%}")
+            print(f"{merchant_name:<35} ${bill['amount']:<11.2f} {bill['type']:<15}")
     
     print("\nDemo data loaded! Try these commands:")
     print("  • python main.py bills - View your bills")
