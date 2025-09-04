@@ -89,7 +89,7 @@ All data is stored locally in `~/.derin_bills.json` including:
 - click
 - python-dateutil
 
-## Resources
+## Deliverables
 
 - **Video Presentation**: (https://www.youtube.com/your-demo-link)
 - **Design Documentation**: (https://docs.google.com/document/d/1aREIXDmk6iFUWbsFzlbiXnPFn_ROIHCmHs7-f5GLrIA/edit?usp=sharing)
